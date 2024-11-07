@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Tabs from './Components/Tabs';
+import MessageContainer from './Components/MessageContainer';
+import InputBar from './Components/InputBar';
 
 function App() {
+  const [messages, setMessages] = useState([]);
+  const [activeTab, setActiveTab] = useState('Chat with bot');
+
+  const handleSend = (message) => {
+    setMessages([...messages, message]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="chat-app">
+      <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
+      <MessageContainer messages={messages} activeTab={activeTab} />
+      <InputBar onSend={handleSend} />
     </div>
   );
 }
