@@ -5,7 +5,6 @@ function MessageContainer({ messages, activeTab }) {
     <div className="message-container">
       {activeTab === 'Chat with bot' ? (
         <>
-          <p>Today</p>
           {messages.map((message, index) => (
             <MessageBubble key={index} message={message} />
           ))}
