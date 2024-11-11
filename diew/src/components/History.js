@@ -1,13 +1,35 @@
-import React from 'react'
-import { app, analytics } from "../utils/firebase";
+import React from 'react';
 
+function History({ history }) {
+    // กลุ่มข้อความตามวันที่
+    const groupedMessages = history.reduce((acc, message) => {
+        const date = new Date(message.timestamp).toLocaleDateString();
+        if (!acc[date]) {
+            acc[date] = [];
+        }
+        acc[date].push(message);
+        return acc;
+    }, {});
 
-function History({m}) {
-  return (
-    <div>
-        {/* <h1>{m.title}</h1> */}
-    </div>
-  )
+    return (
+        <div>
+            {Object.keys(groupedMessages).map((date) => (
+                <div key={date} style={{ marginBottom: '10px' }}>
+                    <div style={{ textAlign: 'center', fontWeight: 'bold', marginBottom: '5px' }}>
+                        {date}
+                    </div>
+                    {groupedMessages[date].map((msg, index) => (
+                        <div key={index} style={{ display: 'flex', justifyContent: 'space-between', padding: '5px' }}>
+                            <span>{msg.message}</span>
+                            <span style={{ fontSize: '0.8em', color: 'gray' }}>
+                                {new Date(msg.timestamp).toLocaleTimeString()}
+                            </span>
+                        </div>
+                    ))}
+                </div>
+            ))}
+        </div>
+    );
 }
 
-export default History
+export default History;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getDatabase, ref, push } from 'firebase/database';
+import { getDatabase, ref, push, onValue } from 'firebase/database';
 import { app } from '../utils/firebase';
 import History from './History';
 
@@ -8,8 +8,16 @@ function Chat() {
     const [history, setHistory] = useState([]);
 
     useEffect(() => {
-        handleSendMessage();
-    },[]);
+        const database = getDatabase(app);
+        const chatRef = ref(database, 'chats');
+        
+        // ใช้ onValue เพื่อดึงข้อมูลแบบเรียลไทม์
+        onValue(chatRef, (snapshot) => {
+            const data = snapshot.val();
+            const chatHistory = data ? Object.values(data) : [];
+            setHistory(chatHistory);
+        });
+    }, []);
 
     const handleSendMessage = () => {
         const database = getDatabase(app);
@@ -23,10 +31,13 @@ function Chat() {
 
     return (
         <div>
+            
+            <History history={history} /> {}
+            
             <input type="text" value={chat} onChange={(e) => setChat(e.target.value)} />
             <button onClick={handleSendMessage}>Send</button>
 
-            <History history={history} />  {/* ใช้ History component */}
+            
         </div>
     );
 }
