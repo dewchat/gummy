@@ -53,12 +53,12 @@ function Chat() {
         <input
           type="text"
           id="question"
-          placeholder="ถามอะไรสักอย่าง..."
+          placeholder=""
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && fetchAnswer()}
         />
-        <button onClick={fetchAnswer}>ส่ง</button>
+        <button onClick={fetchAnswer}>sent</button>
       </div>
     </div>
   );

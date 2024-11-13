@@ -23,7 +23,7 @@ function History() {
       return {
         issueId: problem.Issue_ID,
         description: problem.Issue_description,
-        customer: `${customer.First_name} ${customer.Last_name}`,
+        customer: ${customer.First_name} ${customer.Last_name},
         officer: officer ? officer.Department_name : 'Unknown',
         statusHistory
       };

@@ -1,0 +1,56 @@
+{
+    "Customer": [
+      {
+        "Customer_ID": 1,
+        "First_name": "John",
+        "Last_name": "Doe",
+        "Email": "john.doe@example.com"
+      },
+      {
+        "Customer_ID": 2,
+        "First_name": "Jane",
+        "Last_name": "Smith",
+        "Email": "jane.smith@example.com"
+      }
+    ],
+    "Customer_problem": [
+      {
+        "Issue_ID": 101,
+        "Customer_ID": 1,
+        "Issue_description": "Unable to log into account",
+        "Assigned_to": 1001
+      },
+      {
+        "Issue_ID": 102,
+        "Customer_ID": 2,
+        "Issue_description": "Payment error during checkout",
+        "Assigned_to": 1002
+      }
+    ],
+    "Status": [
+      {
+        "Status_ID": 1,
+        "Issue_ID": 101,
+        "Status": "Open"
+      },
+      {
+        "Status_ID": 2,
+        "Issue_ID": 102,
+        "Status": "In Progress"
+      }
+    ],
+    "Officer": [
+      {
+        "Officer_ID": 1001,
+        "Department_ID": 10,
+        "Department_name": "Technical Support"
+      },
+      {
+        "Officer_ID": 1002,
+        "Department_ID": 20,
+        "Department_name": "Billing"
+      }
+    ]
+  }
+
+  
